@@ -1,4 +1,4 @@
-# Temi_SimpleNavigation_App
+# TemiSimpleNavigationApp
 
 Simple app for navigation of Robo Temi between saved points on map.
 
