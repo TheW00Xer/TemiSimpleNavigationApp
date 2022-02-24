@@ -26,7 +26,15 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         mRobot = Robot.getInstance();
-        TextView textView = findViewById(R.id.textView);
+        TextView textView = findViewById(R.id.textViewPosition);
+
+        Button homePosition = findViewById(R.id.buttonHome);
+        homePosition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRobot.goTo("home base");
+            }
+        });
 
         Button firstPosition = findViewById(R.id.buttonFirst);
         firstPosition.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
-
+        TextView textViewPosition = findViewById(R.id.textViewPosition);
+        String str = position.toString();
+        Log.i(TAG, str);
+        textViewPosition.setText(str);
     }
 }
