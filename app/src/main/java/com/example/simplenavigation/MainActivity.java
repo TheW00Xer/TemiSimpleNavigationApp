@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {    //here function onClick starts action goTo but for a set of defined coordinates X,Y, and arrive there at defined Z axis rotation angle and display tilt angle
                 mRobot.goToPosition(new Position((float) 0.5, (float) 0.5, (float) 0, 30));
+                mRobot.tiltAngle(30,1);
 
             }
         });
