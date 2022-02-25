@@ -17,21 +17,22 @@ import com.robotemi.sdk.navigation.model.Position;
 public class MainActivity extends AppCompatActivity implements
         OnRobotReadyListener,
         OnCurrentPositionChangedListener {
+
     Robot mRobot;
-    String TAG;
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRobot = Robot.getInstance();
-        TextView textView = findViewById(R.id.textViewPosition);
+        mRobot = Robot.getInstance();   //Here we initialize Robot instance
 
-        Button homePosition = findViewById(R.id.buttonHome);
-        homePosition.setOnClickListener(new View.OnClickListener() {
+        Button homePosition = findViewById(R.id.buttonHome);    //Next we defined "homePosition" button and found it by it's viewId
+
+        homePosition.setOnClickListener(new View.OnClickListener() {    //setting up OnClickListener for this button
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {    //function onClick that starts action goTo "HomeBase" which is predefined position saved in Robot.
                 mRobot.goTo("home base");
             }
         });
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements
         Button firstPosition = findViewById(R.id.buttonFirst);
         firstPosition.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                mRobot.goToPosition(new Position((float) 0.5, (float) 0.5, (float) 0, 0));
+            public void onClick(View view) {    //here function onClick starts action goTo but for a set of defined coordinates X,Y, and arrive there at defined Z axis rotation angle and display tilt angle
+                mRobot.goToPosition(new Position((float) 0.5, (float) 0.5, (float) 0, 30));
 
             }
         });
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-
+        //Here we add Robot event listeners for events we will perform in onStart function
         mRobot.addOnRobotReadyListener(this);
         mRobot.addOnCurrentPositionChangedListener(this);
     }
@@ -73,11 +74,14 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStop() {
         super.onStop();
-
+        //Here we remove previously added event listeners in onStop function
         mRobot.removeOnRobotReadyListener(this);
         mRobot.removeOnCurrentPositionChangedListener(this);
     }
 
+    /**
+     * Here we add function "onRobotReady" that will hide our app's top bar when the parameter @param "isReady" is met
+     */
     @Override
     public void onRobotReady(boolean isReady) {
         if (isReady) {
@@ -86,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * This function "onCurrentPositionChanged" uses parameter "position"
+     * @param position to display robot's current X,Y position and rotation & display tilt angle in TextView
+     */
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
         TextView textViewPosition = findViewById(R.id.textViewPosition);
