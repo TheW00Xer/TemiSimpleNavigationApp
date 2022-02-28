@@ -101,8 +101,9 @@ public class MainActivity extends AppCompatActivity implements
         mRobot.removeOnGoToLocationStatusChangedListener(this);
     }
 
-    /**Hide app's top bar when
-     * @param "isReady" is true
+    /**
+     * Hide app's top bar when
+     * @param isReady is true
      */
     @Override
     public void onRobotReady(boolean isReady) {
