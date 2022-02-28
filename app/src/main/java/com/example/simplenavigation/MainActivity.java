@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements
         mRobot.removeOnCurrentPositionChangedListener(this);
     }
 
-    /**
-     * Hide app's top bar when the parameter @param "isReady" is met
+    /**Hide app's top bar when
+     * @param isReady is true
      */
     @Override
     public void onRobotReady(boolean isReady) {
@@ -111,17 +111,18 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Value of @param position is used to display robot's current X,Y position and rotation & display tilt angle in TextView
+     * @param position is used to display robot's current X,Y position and rotation & display tilt angle in TextView
      */
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
+        TextView textViewPosition = findViewById(R.id.textViewPosition);
         String str = position.toString();
         Log.i(TAG, str);
+        textViewPosition.setText(str);
     }
 
     @Override
     public void onGoToLocationStatusChanged(@NonNull String s, @NonNull String s1, int i, @NonNull String s2) {
-        TextView textViewPosition = findViewById(R.id.textViewPosition);
         TtsRequest ttsRequest = TtsRequest.create("I'm here", true);
         mRobot.speak(ttsRequest);
     }
