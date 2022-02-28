@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements
         mRobot.removeOnGoToLocationStatusChangedListener(this);
     }
 
-    /**
-     * Hide app's top bar when the parameter @param "isReady" is met
+    /**Hide app's top bar when
+     * @param "isReady" is true
      */
     @Override
     public void onRobotReady(boolean isReady) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Value of @param position is used to display robot's current X,Y position and rotation & display tilt angle in TextView
+     * @param position is used to display robot's current X,Y position and rotation & display tilt angle in TextView
      */
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Functions checks GoToLocation Status of robot with following parameters:
-     * Location name where Temi is going is represented by @param s
-     * Navigation status (eg. GOING, CALCULATING, COMPLETE) is represented by @param s1 which is used here to determine that Robot arrived at set location
-     * Id Code that represents description of Navigation status is represented by @param i
-     * Informative description of navigation status (eg. obstacle info) is represented by @param s2
+     * @param s name of location where Temi is going
+     * @param s1 navigation status (eg. GOING, CALCULATING, COMPLETE) which is used here to determine that Robot arrived at set location
+     * @param i Id Code that represents description of Navigation status
+     * @param s2 informative description of navigation status (eg. obstacle info)
      */
     @Override
     public void onGoToLocationStatusChanged(@NonNull String s, @NonNull String s1, int i, @NonNull String s2) {
