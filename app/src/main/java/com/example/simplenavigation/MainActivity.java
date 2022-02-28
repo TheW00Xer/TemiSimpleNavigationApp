@@ -25,6 +25,40 @@ public class MainActivity extends AppCompatActivity implements
     private Robot mRobot;
     private final String TAG = MainActivity.class.getSimpleName();
 
+    /**
+     * Function getInt is used to get integer value from EditText views
+     * @param viewId is used to find view we want to get value from
+     * @return is value of view or if view is empty function returns "50" so robot ends up facing upwards towards user
+     */
+    public int getInt(int viewId) {
+        EditText text = findViewById(viewId);
+        String tiltVal = text.getText().toString();
+        if (tiltVal.equals("")) {
+            text.setText("50");
+            return 50;
+        }
+        else {
+            return Integer.parseInt(tiltVal);
+        }
+    }
+
+    /**
+     * Function getFloat is used to get float values from EditText views
+     * @param viewId is used to find view we want to get value from
+     * @return is value of view or if view is empty function returns "0" to prevent app from crashing and robot shouldn't change it's position
+     */
+    public float getFloat(int viewId) {
+        EditText text = findViewById(viewId);
+        String floatVal = text.getText().toString();
+        if (floatVal.equals("")) {
+            text.setText("0");
+            return 0;
+        }
+        else {
+            return Float.parseFloat(floatVal);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,21 +66,15 @@ public class MainActivity extends AppCompatActivity implements
 
         mRobot = Robot.getInstance(); //Here we initialize Robot instance
 
-        final EditText editTextX = findViewById(R.id.editTextX);
-        final EditText editTextY = findViewById(R.id.editTextY);
-        final EditText editTextYaw = findViewById(R.id.editTextYaw);
-        final EditText editTextTilt = findViewById(R.id.editTextTilt);
-
         Button gotoCoordinates = findViewById(R.id.buttonCoordinates);
         gotoCoordinates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float posX = Float.parseFloat(editTextX.getText().toString());
-                float posY = Float.parseFloat(editTextY.getText().toString());
-                float yaw = Float.parseFloat(editTextYaw.getText().toString());
-                int tilt = Integer.parseInt(editTextTilt.getText().toString());
+                float posX = getFloat(R.id.editTextX);
+                float posY = getFloat(R.id.editTextY);
+                float yaw = getFloat(R.id.editTextYaw);
+                int tilt = getInt(R.id.editTextTilt);
                 mRobot.goToPosition(new Position(posX, posY, yaw, tilt));
-                mRobot.tiltBy(tilt);
             }
         });
 
@@ -101,7 +129,8 @@ public class MainActivity extends AppCompatActivity implements
         mRobot.removeOnGoToLocationStatusChangedListener(this);
     }
 
-    /**Hide app's top bar when
+    /**
+     * Hide app's top bar when
      * @param "isReady" is true
      */
     @Override
@@ -135,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements
         if (s1.equals(COMPLETE)) {
             TtsRequest ttsRequest = TtsRequest.create("I'm here", true);
             mRobot.speak(ttsRequest);
+            int tilt = getInt(R.id.editTextTilt);
+            mRobot.tiltAngle(tilt, 1);
         }
     }
 }
