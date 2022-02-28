@@ -7,34 +7,76 @@
     android:background="#4B4B4B"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/editTextYaw"
+        android:layout_width="120dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="@string/yawAngle"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextY"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTilt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editTextY"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/editTextTilt"
+        android:layout_width="120dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="@string/tildAngle"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextYaw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editTextYaw"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/editTextY"
+        android:layout_width="120dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="@string/yPosition"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextX"
+        app:layout_constraintEnd_toStartOf="@+id/editTextYaw"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editTextX"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
     <Button
         android:id="@+id/buttonHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#1E234B"
-        android:text="Home Base"
+        android:text="@string/buttonHome"
         android:textColor="#FFFFFF"
         android:textColorHint="#AFAFAF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.779" />
+        app:layout_constraintVertical_bias="0.889" />
 
     <TextView
         android:id="@+id/textViewPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/positionCoordinates"
         android:textColor="#AFAFAF"
         android:textColorHint="#AFAFAF"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSecond"
+        app:layout_constraintBottom_toTopOf="@+id/editTextYaw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonFirst"
@@ -42,27 +84,30 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:background="#1E234B"
-        android:text="Position A"
+        android:text="@string/buttonA"
         android:textColor="#FFFFFF"
         android:textColorHint="#AFAFAF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSecond"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
 
     <Button
         android:id="@+id/buttonSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#1E234B"
-        android:text="Position B"
+        android:text="@string/buttonB"
         android:textColor="#FFFFFF"
         android:textColorHint="#AFAFAF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
 
     <Button
         android:id="@+id/buttonThird"
@@ -70,12 +115,42 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:background="#1E234B"
-        android:text="Position C"
+        android:text="@string/buttonC"
         android:textColor="#FFFFFF"
         android:textColorHint="#AFAFAF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonSecond"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <EditText
+        android:id="@+id/editTextX"
+        android:layout_width="120dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/xPosition"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/editTextY"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPosition"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+    <Button
+        android:id="@+id/buttonCoordinates"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="#1E234B"
+        android:text="@string/buttonCoordinates"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSecond"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextY" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

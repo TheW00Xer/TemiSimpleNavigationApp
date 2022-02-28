@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Simple Navigation</string>
+    <string name="buttonCoordinates">Go to set coordinates</string>
+    <string name="buttonA">Position A</string>
+    <string name="buttonB">Position B</string>
+    <string name="buttonC">Position C</string>
+    <string name="buttonHome">Home Base</string>
+    <string name="xPosition">X coordinate</string>
+    <string name="yPosition">Y coordinate</string>
+    <string name="yawAngle">Yaw angle</string>
+    <string name="tildAngle">Tilt angle</string>
+    <string name="positionCoordinates">position</string>
 </resources>
