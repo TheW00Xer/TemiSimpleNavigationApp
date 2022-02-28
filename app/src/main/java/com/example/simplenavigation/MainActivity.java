@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements
                 float yaw = Float.parseFloat(editTextYaw.getText().toString());
                 int tilt = Integer.parseInt(editTextTilt.getText().toString());
                 mRobot.goToPosition(new Position(posX, posY, yaw, tilt));
-                mRobot.tiltAngle(tilt,1);
+                mRobot.tiltBy(tilt);
             }
         });
 
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements
         //Adding event listeners
         mRobot.addOnRobotReadyListener(this);
         mRobot.addOnCurrentPositionChangedListener(this);
+        mRobot.addOnGoToLocationStatusChangedListener(this);
     }
 
     @Override
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements
         //Removing event listeners
         mRobot.removeOnRobotReadyListener(this);
         mRobot.removeOnCurrentPositionChangedListener(this);
+        mRobot.removeOnGoToLocationStatusChangedListener(this);
     }
 
     /**
@@ -115,14 +117,24 @@ public class MainActivity extends AppCompatActivity implements
      */
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
+        TextView textViewPosition = findViewById(R.id.textViewPosition);
         String str = position.toString();
         Log.i(TAG, str);
+        textViewPosition.setText(str);
     }
 
+    /**
+     * Functions checks GoToLocation Status of robot with following parameters:
+     * Location name where Temi is going is represented by @param s
+     * Navigation status (eg. GOING, CALCULATING, COMPLETE) is represented by @param s1 which is used here to determine that Robot arrived at set location
+     * Id Code that represents description of Navigation status is represented by @param i
+     * Informative description of navigation status (eg. obstacle info) is represented by @param s2
+     */
     @Override
     public void onGoToLocationStatusChanged(@NonNull String s, @NonNull String s1, int i, @NonNull String s2) {
-        TextView textViewPosition = findViewById(R.id.textViewPosition);
-        TtsRequest ttsRequest = TtsRequest.create("I'm here", true);
-        mRobot.speak(ttsRequest);
+        if (s1.equals(COMPLETE)) {
+            TtsRequest ttsRequest = TtsRequest.create("I'm here", true);
+            mRobot.speak(ttsRequest);
+        }
     }
 }
