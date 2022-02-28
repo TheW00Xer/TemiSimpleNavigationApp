@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements
         mRobot.removeOnCurrentPositionChangedListener(this);
     }
 
-    /**Hide app's top bar when
+    /**
+     * Hide app's top bar when
      * @param isReady is true
      */
     @Override
@@ -111,7 +112,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * @param position is used to display robot's current X,Y position and rotation & display tilt angle in TextView
+     * Used to display robot's current position in TextView
+     * @param position holds values for X,Y position and rotation & display tilt angle
      */
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
