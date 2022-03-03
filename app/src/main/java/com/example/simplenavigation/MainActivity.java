@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements
         EditText text = findViewById(viewId);
         String tiltVal = text.getText().toString();
         if (tiltVal.isEmpty()) {
-            text.setText("50");
+            text.setText(R.string.defaultTiltValue);
             return 50;
         }
         else {
