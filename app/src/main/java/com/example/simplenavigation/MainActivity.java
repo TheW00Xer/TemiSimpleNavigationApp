@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity implements
     private final String TAG = MainActivity.class.getSimpleName();
 
     /**
-     * Function getInt is used to get integer value from EditText views
-     * @param viewId is used to find view we want to get value from
-     * @return is value of view or if view is empty function returns "50" so robot ends up facing upwards towards user
+     * Function getTilt is used to get integer value from EditText views
+     * @param viewId Used to find view we want to get value from
+     * @return Value of view or if view is empty function returns "50" so robot ends up facing upwards towards user
      */
-    public int getInt(int viewId) {
+    public int getTilt(int viewId) {
         EditText text = findViewById(viewId);
         String tiltVal = text.getText().toString();
-        if (tiltVal.equals("")) {
+        if (tiltVal.isEmpty()) {
             text.setText("50");
             return 50;
         }
@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Function getFloat is used to get float values from EditText views
-     * @param viewId is used to find view we want to get value from
-     * @return is value of view or if view is empty function returns "0" to prevent app from crashing and robot shouldn't change it's position
+     * @param viewId Used to find view we want to get value from
+     * @return Value of view or if view is empty function returns "0" to prevent app from crashing and robot shouldn't change it's position
      */
     public float getFloat(int viewId) {
         EditText text = findViewById(viewId);
         String floatVal = text.getText().toString();
-        if (floatVal.equals("")) {
+        if (floatVal.isEmpty()) {
             text.setText("0");
             return 0;
         }
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements
                 float posX = getFloat(R.id.editTextX);
                 float posY = getFloat(R.id.editTextY);
                 float yaw = getFloat(R.id.editTextYaw);
-                int tilt = getInt(R.id.editTextTilt);
+                int tilt = getTilt(R.id.editTextTilt);
                 mRobot.goToPosition(new Position(posX, posY, yaw, tilt));
             }
         });
@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Hide app's top bar when
-     * @param "isReady" is true
+     * Hide app's top bar when parameter "isReady" is true
+     * @param isReady Robot status parameter
      */
     @Override
     public void onRobotReady(boolean isReady) {
@@ -142,7 +142,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * @param position is used to display robot's current X,Y position and rotation & display tilt angle in TextView
+     * Function used to display robot's current X,Y position and rotation & display tilt angle in TextView
+     * @param position holds values of robot's current position (X,Y,Yaw,tilt)
      */
     @Override
     public void onCurrentPositionChanged(@NonNull Position position) {
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements
         if (s1.equals(COMPLETE)) {
             TtsRequest ttsRequest = TtsRequest.create("I'm here", true);
             mRobot.speak(ttsRequest);
-            int tilt = getInt(R.id.editTextTilt);
+            int tilt = getTilt(R.id.editTextTilt);
             mRobot.tiltAngle(tilt, 1);
         }
     }
