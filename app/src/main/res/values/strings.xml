@@ -8,6 +8,7 @@
     <string name="xPosition">X coordinate</string>
     <string name="yPosition">Y coordinate</string>
     <string name="yawAngle">Yaw angle</string>
-    <string name="tildAngle">Tilt angle</string>
+    <string name="tiltAngle">Tilt angle</string>
     <string name="positionCoordinates">position</string>
+    <string name="defaultTiltValue">50</string>
 </resources>
